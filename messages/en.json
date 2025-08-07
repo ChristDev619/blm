@@ -1,0 +1,212 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "contact": "Contact",
+    "logo": {
+      "bestLook": "Best Look",
+      "contracting": "Contracting"
+    }
+  },
+  "hero": {
+    "badge": "Swedish-European Excellence",
+    "title": "Best Look Contracting",
+    "subtitle": "Swedish-European Excellence in Saudi Arabia",
+    "description": "Specialized in high-end paints and modern finishes with advanced technology and 10-year warranties",
+    "cta": {
+      "book": "Book Free Site Visit",
+      "contact": "Contact Us Directly"
+    },
+    "trust": {
+      "warranty": "10-Year Warranty",
+      "eco": "100% Eco-Friendly",
+      "technology": "Advanced Technology"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "We are elite paint experts from Europe, now operating in Saudi Arabia. We work with an integrated system that starts from surface preparation to the final paint layer",
+    "features": {
+      "spraying": {
+        "title": "Advanced Spraying Systems",
+        "description": "We use advanced spraying systems for perfect coverage and finish"
+      },
+      "sanding": {
+        "title": "Dust-Free Sanding",
+        "description": "Modern sanding machines without dust for a clean environment"
+      },
+      "mesh": {
+        "title": "Professional Fiber Mesh",
+        "description": "Professional installation of fiber mesh for permanent crack isolation"
+      }
+    },
+    "expertise": {
+      "title": "European Expertise × Saudi Quality",
+      "description": "We combine Swedish-European expertise with local Saudi knowledge to deliver the highest quality finishes. Our team brings international standards to every project",
+      "experience": "10+ Years of European Experience",
+      "standards": "Swedish-European Standards"
+    },
+    "quote": {
+      "text": "Every project we execute is treated as a masterpiece, not just a contract",
+      "author": "- Best Look Contracting Team"
+    },
+    "trust": {
+      "warranty": "Years Warranty",
+      "eco": "Eco-Friendly",
+      "support": "Support"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "We execute and finish luxurious internal and external work including:",
+    "list": [
+      "Automatic Putty Spraying",
+      "Final Paint Spraying",
+      "Dust-Free Sanding",
+      "Fiber Mesh Installation",
+      "Crack & Peeling Protection",
+      "Written Warranty on All Work"
+    ],
+    "stats": {
+      "warranty": {
+        "value": "10+",
+        "label": "Years Warranty"
+      },
+      "eco": {
+        "value": "100%",
+        "label": "Eco-Friendly"
+      },
+      "support": {
+        "value": "24/7",
+        "label": "Support"
+      }
+    }
+  },
+  "portfolio": {
+    "title": "Our Portfolio",
+    "subtitle": "Discover our latest projects showcasing Swedish-European excellence in Saudi Arabia",
+    "projects": {
+      "project1": {
+        "title": "Luxury Villa Interior",
+        "description": "Complete interior painting with premium finishes"
+      },
+      "project2": {
+        "title": "Modern Office Complex",
+        "description": "Commercial painting with advanced technology"
+      },
+      "project3": {
+        "title": "Residential Complex",
+        "description": "Exterior painting with weather protection"
+      },
+      "project4": {
+        "title": "Hotel Lobby",
+        "description": "High-end decorative finishes"
+      },
+      "project5": {
+        "title": "Shopping Mall",
+        "description": "Large-scale commercial project"
+      },
+      "project6": {
+        "title": "Private Residence",
+        "description": "Custom paint solutions"
+      }
+    },
+    "placeholder": "Add your actual project images to the /public/portfolio/ folder"
+  },
+  "why": {
+    "title": "Why Choose Best Look?",
+    "subtitle": "We combine Swedish-European expertise with local Saudi knowledge to deliver exceptional results",
+    "features": [
+      "European Experience × Saudi Quality",
+      "Advanced Technology – High-Level Equipment",
+      "Full Commitment to Time and Details",
+      "Written Warranties up to 10 Years",
+      "100% Environmentally Friendly System",
+      "Professional Team with International Experience"
+    ],
+    "cta": {
+      "title": "Ready to Transform Your Space?",
+      "subtitle": "Get a free consultation and quote for your project",
+      "quote": "Get Free Quote",
+      "whatsapp": "WhatsApp Us"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with us for a free consultation and quote",
+    "info": {
+      "title": "Get In Touch",
+      "description": "Ready to transform your space? Contact us today for a free consultation and quote",
+      "address": {
+        "title": "Address",
+        "value": "Riyadh – Al-Rimal District – Prince Mohammed bin Salman Street"
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "value": "+966 59 833 1519"
+      },
+      "email": {
+        "title": "Email",
+        "value": "info@blm.sa"
+      },
+      "website": {
+        "title": "Website",
+        "value": "www.bestlook.sa"
+      }
+    },
+    "form": {
+      "title": "Quick Contact Form",
+      "name": "Name",
+      "phone": "Phone Number",
+      "projectType": "Project Type",
+      "projectTypePlaceholder": "Select project type",
+      "projectTypes": {
+        "residential": "Residential",
+        "commercial": "Commercial",
+        "interior": "Interior Painting",
+        "exterior": "Exterior Painting",
+        "renovation": "Renovation",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your project...",
+      "send": "Send Message"
+    }
+  },
+  "footer": {
+    "logo": {
+      "bestLook": "Best Look",
+      "contracting": "Contracting"
+    },
+    "description": "Swedish-European excellence in Saudi Arabia. Specialized in high-end paints and modern finishes with advanced technology and 10-year warranties",
+    "services": {
+      "title": "Our Services",
+      "list": [
+        "Automatic Putty Spraying",
+        "Final Paint Spraying",
+        "Dust-Free Sanding",
+        "Fiber Mesh Installation",
+        "Crack Protection",
+        "Written Warranties"
+      ]
+    },
+    "contact": {
+      "title": "Contact Info",
+      "address": {
+        "line1": "Riyadh – Al-Rimal District",
+        "line2": "Prince Mohammed bin Salman Street"
+      },
+      "phone": "+966 59 833 1519",
+      "email": "info@blm.sa"
+    },
+    "copyright": "© 2024 Best Look Contracting. All rights reserved",
+    "links": {
+      "about": "About",
+      "services": "Services",
+      "portfolio": "Portfolio",
+      "contact": "Contact"
+    }
+  }
+} 

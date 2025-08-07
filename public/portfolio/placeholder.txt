@@ -1,0 +1,12 @@
+This directory contains portfolio images for the Best Look Contracting website.
+
+Please add your actual portfolio images here with the following names:
+- bathroom-1.jpg (or .png, .webp)
+- hallway-1.jpg
+- hallway-2.jpg
+- interior-1.jpg
+- interior-2.jpg
+- interior-3.jpg
+
+The images should be high-quality and showcase your work.
+Recommended size: 1200x800 pixels or similar aspect ratio. 
