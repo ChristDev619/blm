@@ -298,6 +298,7 @@ export default function About({ locale }: AboutProps) {
                      whileInView={{ scale: 1 }}
                      transition={{ duration: 0.8, delay: 0.3 }}
                      viewport={{ once: true }}
+                     whileHover={{ scale: 1.05 }}
                    >
                      <CountUp end={10} duration={2.5} delay={0.5} />+
                    </motion.div>
@@ -322,6 +323,7 @@ export default function About({ locale }: AboutProps) {
                      whileInView={{ scale: 1 }}
                      transition={{ duration: 0.8, delay: 0.5 }}
                      viewport={{ once: true }}
+                     whileHover={{ scale: 1.05 }}
                    >
                      <CountUp end={100} duration={2.5} delay={0.7} />%
                    </motion.div>
@@ -346,6 +348,7 @@ export default function About({ locale }: AboutProps) {
                      whileInView={{ scale: 1 }}
                      transition={{ duration: 0.8, delay: 0.7 }}
                      viewport={{ once: true }}
+                     whileHover={{ scale: 1.05 }}
                    >
                      24/7
                    </motion.div>
@@ -364,13 +367,32 @@ export default function About({ locale }: AboutProps) {
    );
  }
 
-// CountUp component for animated numbers
+// Enhanced CountUp component with scroll trigger
 function CountUp({ end, duration = 2, delay = 0 }: { end: number; duration?: number; delay?: number }) {
    const [count, setCount] = useState(0);
    const [hasAnimated, setHasAnimated] = useState(false);
+   const [isInView, setIsInView] = useState(false);
+   const countRef = useRef<HTMLDivElement>(null);
 
    useEffect(() => {
-     if (hasAnimated) return;
+     const observer = new IntersectionObserver(
+       ([entry]) => {
+         if (entry.isIntersecting && !hasAnimated) {
+           setIsInView(true);
+         }
+       },
+       { threshold: 0.5 }
+     );
+
+     if (countRef.current) {
+       observer.observe(countRef.current);
+     }
+
+     return () => observer.disconnect();
+   }, [hasAnimated]);
+
+   useEffect(() => {
+     if (!isInView || hasAnimated) return;
 
      const timer = setTimeout(() => {
        let startTime: number;
@@ -380,7 +402,11 @@ function CountUp({ end, duration = 2, delay = 0 }: { end: number; duration?: num
          if (!startTime) startTime = currentTime;
          const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
          
-         setCount(Math.floor(progress * end));
+         // Add easing function for smoother animation
+         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+         const currentCount = Math.floor(easeOutQuart * end);
+         
+         setCount(currentCount);
          
          if (progress < 1) {
            animationFrameId = requestAnimationFrame(animate);
@@ -395,7 +421,7 @@ function CountUp({ end, duration = 2, delay = 0 }: { end: number; duration?: num
      return () => {
        clearTimeout(timer);
      };
-   }, [end, duration, delay, hasAnimated]);
+   }, [isInView, end, duration, delay, hasAnimated]);
 
-   return <span>{count}</span>;
+   return <span ref={countRef}>{count}</span>;
  } 
