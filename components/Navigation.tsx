@@ -21,6 +21,15 @@ export default function Navigation({ locale }: NavigationProps) {
     { href: `/${locale}#contact`, label: getTranslation(locale, 'nav.contact') },
   ];
 
+  // Get the path without the locale
+  const pathWithoutLocale = pathname.replace(`/${locale}`, '') || '/';
+  
+  // Determine the other locale
+  const otherLocale = locale === 'en' ? 'ar' : 'en';
+  
+  // Construct the URL for the other locale
+  const otherLocaleUrl = `/${otherLocale}${pathWithoutLocale}`;
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:bg-gray-900/95 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,6 +55,21 @@ export default function Navigation({ locale }: NavigationProps) {
                 </Link>
               ))}
             </div>
+          </div>
+
+          {/* Desktop Language Switcher */}
+          <div className="hidden md:block">
+            <Link
+              href={otherLocaleUrl}
+              className="inline-flex items-center px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105"
+            >
+              <span className="mr-2 text-sm">
+                {otherLocale === 'ar' ? '🇸🇦' : '🇺🇸'}
+              </span>
+              <span className="font-medium text-gray-700 dark:text-gray-300 text-sm">
+                {otherLocale === 'ar' ? 'العربية' : 'English'}
+              </span>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -80,6 +104,17 @@ export default function Navigation({ locale }: NavigationProps) {
                 {item.label}
               </Link>
             ))}
+            {/* Mobile Language Switcher */}
+            <Link
+              href={otherLocaleUrl}
+              className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <span className="mr-2">
+                {otherLocale === 'ar' ? '🇸🇦' : '🇺🇸'}
+              </span>
+              {otherLocale === 'ar' ? 'العربية' : 'English'}
+            </Link>
           </div>
         </div>
       )}
