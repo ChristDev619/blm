@@ -31,14 +31,14 @@ export default function Navigation({ locale }: NavigationProps) {
   const otherLocaleUrl = `/${otherLocale}${pathWithoutLocale}`;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:bg-gray-900/95 dark:border-gray-700">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href={`/${locale}`} className="flex items-center">
-              <span className="text-2xl font-bold text-primary">{getTranslation(locale, 'nav.logo.bestLook')}</span>
-              <span className="text-sm text-gray-600 dark:text-gray-400 ml-2">{getTranslation(locale, 'nav.logo.contracting')}</span>
+              <span className="text-2xl font-bold text-blue-400">{getTranslation(locale, 'nav.logo.bestLook')}</span>
+              <span className="text-sm text-slate-300 ml-2">{getTranslation(locale, 'nav.logo.contracting')}</span>
             </Link>
           </div>
 
@@ -49,7 +49,7 @@ export default function Navigation({ locale }: NavigationProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                  className="text-slate-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                 >
                   {item.label}
                 </Link>
@@ -61,12 +61,12 @@ export default function Navigation({ locale }: NavigationProps) {
           <div className="hidden md:block">
             <Link
               href={otherLocaleUrl}
-              className="inline-flex items-center px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105"
+              className="inline-flex items-center px-3 py-2 bg-slate-800 border border-slate-600 rounded-lg shadow-sm hover:shadow-md hover:bg-slate-700 transition-all duration-200 transform hover:scale-105"
             >
               <span className="mr-2 text-sm">
                 {otherLocale === 'ar' ? '🇸🇦' : '🇺🇸'}
               </span>
-              <span className="font-medium text-gray-700 dark:text-gray-300 text-sm">
+              <span className="font-medium text-slate-200 text-sm">
                 {otherLocale === 'ar' ? 'العربية' : 'English'}
               </span>
             </Link>
@@ -76,7 +76,7 @@ export default function Navigation({ locale }: NavigationProps) {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary focus:outline-none focus:text-primary"
+              className="text-slate-300 hover:text-blue-400 focus:outline-none focus:text-blue-400"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isMenuOpen ? (
@@ -93,12 +93,12 @@ export default function Navigation({ locale }: NavigationProps) {
       {/* Mobile Navigation */}
       {isMenuOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-slate-900 border-t border-slate-700">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+                className="text-slate-300 hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
@@ -107,7 +107,7 @@ export default function Navigation({ locale }: NavigationProps) {
             {/* Mobile Language Switcher */}
             <Link
               href={otherLocaleUrl}
-              className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              className="text-slate-300 hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}
             >
               <span className="mr-2">
