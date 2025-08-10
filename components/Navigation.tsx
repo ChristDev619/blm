@@ -18,6 +18,7 @@ const Navigation = ({ locale }: NavigationProps) => {
     { href: `/${locale}`, label: getTranslation(locale, 'nav.home'), id: 'home' },
     { href: `/${locale}#about`, label: getTranslation(locale, 'nav.about'), id: 'about' },
     { href: `/${locale}#services`, label: getTranslation(locale, 'nav.services'), id: 'services' },
+    { href: `/${locale}#machines`, label: getTranslation(locale, 'nav.machines'), id: 'machines' },
     { href: `/${locale}#portfolio`, label: getTranslation(locale, 'nav.portfolio'), id: 'portfolio' },
     { href: `/${locale}#contact`, label: getTranslation(locale, 'nav.contact'), id: 'contact' },
   ];
@@ -29,21 +30,28 @@ const Navigation = ({ locale }: NavigationProps) => {
   // Scroll detection for active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'services', 'portfolio', 'contact'];
-      const scrollPosition = window.scrollY + 100; // Offset for header height
+      const sections = ['home', 'about', 'services', 'machines', 'portfolio', 'contact'];
+      const scrollPosition = window.scrollY + 150; // Increased offset for better detection
 
+      let currentSection = 'home';
+      
       for (const section of sections) {
         const element = document.getElementById(section === 'home' ? 'hero' : section);
         if (element) {
           const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
+            currentSection = section;
             break;
           }
         }
       }
+      
+      setActiveSection(currentSection);
     };
 
+    // Initial call to set correct section on page load
+    handleScroll();
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);

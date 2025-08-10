@@ -117,19 +117,7 @@ export default function Portfolio({ locale }: PortfolioProps) {
           </motion.div>
         </AnimatedSection>
 
-        <AnimatedSection delay={0.4}>
-          <div className="text-center mt-12">
-            <motion.p 
-              className="text-gray-500 dark:text-gray-400 text-sm"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              {getTranslation(locale, 'portfolio.placeholder')}
-            </motion.p>
-          </div>
-        </AnimatedSection>
+
       </div>
     </section>
   );

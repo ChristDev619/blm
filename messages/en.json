@@ -3,6 +3,7 @@
     "home": "Home",
     "about": "About",
     "services": "Services",
+    "machines": "Machines",
     "portfolio": "Portfolio",
     "contact": "Contact",
     "logo": {
@@ -81,6 +82,36 @@
       "support": {
         "value": "24/7",
         "label": "Support"
+      }
+    }
+  },
+  "machines": {
+    "title": "Our Advanced Machines",
+    "subtitle": "State-of-the-art equipment for professional painting and finishing",
+    "machine1": {
+      "title": "Professional Spray Gun",
+      "description": "High-precision spraying system for perfect coverage and finish"
+    },
+    "machine2": {
+      "title": "Dust-Free Sanding Equipment",
+      "description": "Advanced sanding technology for clean, dust-free preparation"
+    },
+    "machine3": {
+      "title": "Automated Painting System",
+      "description": "Computer-controlled painting system for consistent results"
+    },
+    "features": {
+      "technology": {
+        "value": "100%",
+        "label": "Advanced Technology"
+      },
+      "precision": {
+        "value": "99.9%",
+        "label": "Precision Accuracy"
+      },
+      "efficiency": {
+        "value": "3x",
+        "label": "Faster Efficiency"
       }
     }
   },

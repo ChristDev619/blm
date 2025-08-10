@@ -363,16 +363,16 @@ export default function Contact({ locale }: ContactProps) {
                          dir={locale === 'ar' ? 'rtl' : 'ltr'}>
                     {getTranslation(locale, 'contact.form.name')}
                   </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-4 bg-white/20 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-white placeholder-white/60 backdrop-blur-sm transition-all duration-300 hover:bg-white/25"
-                    required
-                    suppressHydrationWarning
-                  />
+                                                        <input
+                     type="text"
+                     id="name"
+                     name="name"
+                     value={formData.name}
+                     onChange={handleChange}
+                     className="w-full px-4 py-4 bg-white/20 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-white placeholder-white/60 backdrop-blur-sm transition-all duration-300 hover:bg-white/25"
+                     required
+                     suppressHydrationWarning
+                   />
                 </motion.div>
 
                 <motion.div
@@ -385,16 +385,16 @@ export default function Contact({ locale }: ContactProps) {
                          dir={locale === 'ar' ? 'rtl' : 'ltr'}>
                     {getTranslation(locale, 'contact.form.phone')}
                   </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-4 py-4 bg-white/20 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-white placeholder-white/60 backdrop-blur-sm transition-all duration-300 hover:bg-white/25"
-                    required
-                    suppressHydrationWarning
-                  />
+                                                        <input
+                     type="tel"
+                     id="phone"
+                     name="phone"
+                     value={formData.phone}
+                     onChange={handleChange}
+                     className="w-full px-4 py-4 bg-white/20 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-white placeholder-white/60 backdrop-blur-sm transition-all duration-300 hover:bg-white/25"
+                     required
+                     suppressHydrationWarning
+                   />
                 </motion.div>
 
                 
@@ -409,16 +409,16 @@ export default function Contact({ locale }: ContactProps) {
                          dir={locale === 'ar' ? 'rtl' : 'ltr'}>
                     {getTranslation(locale, 'contact.form.message')}
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={4}
-                    className="w-full px-4 py-4 bg-white/20 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-white placeholder-white/60 backdrop-blur-sm transition-all duration-300 resize-none hover:bg-white/25"
-                    placeholder={getTranslation(locale, 'contact.form.messagePlaceholder')}
-                    suppressHydrationWarning
-                  />
+                                                        <textarea
+                     id="message"
+                     name="message"
+                     value={formData.message}
+                     onChange={handleChange}
+                     rows={4}
+                     className="w-full px-4 py-4 bg-white/20 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-white placeholder-white/60 backdrop-blur-sm transition-all duration-300 resize-none hover:bg-white/25"
+                     placeholder={getTranslation(locale, 'contact.form.messagePlaceholder')}
+                     suppressHydrationWarning
+                   />
                 </motion.div>
 
                 <motion.button
