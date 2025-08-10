@@ -4,7 +4,7 @@ import { getTranslation } from '@/lib/translations';
 import AnimatedSection from './AnimatedSection';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface AboutProps {
   locale: string;
@@ -15,15 +15,15 @@ export default function About({ locale }: AboutProps) {
     <section id="about" className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-900/20 to-indigo-900/20 rounded-full blur-3xl opacity-60"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-indigo-900/20 to-purple-900/20 rounded-full blur-3xl opacity-60"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-indigo-600/15 to-violet-600/15 rounded-full blur-3xl opacity-40"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-violet-600/15 to-purple-600/15 rounded-full blur-3xl opacity-40"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection>
           <div className="text-center mb-20">
             <motion.div
-              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-900/30 to-indigo-900/30 rounded-full text-blue-300 text-sm font-medium mb-6"
+              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-slate-800/40 to-slate-700/40 rounded-full text-slate-200 text-sm font-medium mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -34,7 +34,7 @@ export default function About({ locale }: AboutProps) {
             </motion.div>
             
                          <motion.h2 
-               className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white via-blue-100 to-indigo-100 bg-clip-text text-transparent mb-8 leading-tight"
+               className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight"
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8 }}
@@ -75,7 +75,7 @@ export default function About({ locale }: AboutProps) {
             ].map((feature, index) => (
                              <motion.div 
                  key={index}
-                 className="group relative bg-gradient-to-br from-slate-800/80 to-slate-700/60 backdrop-blur-sm rounded-2xl p-8 border border-slate-600/50 shadow-lg hover:shadow-xl transition-all duration-500 hover:from-slate-700 hover:to-slate-600 hover:scale-105"
+                 className="group relative bg-gradient-to-br from-slate-800/40 to-slate-700/40 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/40 shadow-lg hover:shadow-xl transition-all duration-500 hover:from-slate-800 hover:to-slate-700 hover:scale-105"
                  initial={{ opacity: 0, y: 30 }}
                  whileInView={{ opacity: 1, y: 0 }}
                  transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -86,17 +86,17 @@ export default function About({ locale }: AboutProps) {
                  }}
                >
                  {/* Hover effect background */}
-                 <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 to-indigo-900/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-slate-700/20 to-slate-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="relative z-10 text-center">
                                      <motion.div 
-                     className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-600 rounded-2xl mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 border border-slate-500/50"
+                      className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 border border-indigo-600/50"
                      whileHover={{ rotate: 5 }}
                    >
-                     <span className="text-2xl text-slate-300 group-hover:text-blue-400 transition-colors duration-300">{feature.icon}</span>
+                      <span className="text-2xl text-white group-hover:text-blue-200 transition-colors duration-300">{feature.icon}</span>
                    </motion.div>
                   
-                                                        <h3 className="text-xl font-bold text-slate-200 mb-4 group-hover:text-blue-400 transition-colors duration-300"
+                                                         <h3 className="text-xl font-bold text-white mb-4 group-hover:text-blue-200 transition-colors duration-300"
                        dir={locale === 'ar' ? 'rtl' : 'ltr'}
                        style={{ 
                          lineHeight: locale === 'ar' ? '1.6' : '1.4',
@@ -105,7 +105,7 @@ export default function About({ locale }: AboutProps) {
                      {feature.title}
                    </h3>
                    
-                   <p className="text-slate-400 leading-relaxed"
+                    <p className="text-slate-300 leading-relaxed"
                       dir={locale === 'ar' ? 'rtl' : 'ltr'}
                       style={{ 
                         lineHeight: locale === 'ar' ? '1.8' : '1.6',
@@ -116,7 +116,7 @@ export default function About({ locale }: AboutProps) {
                    </p>
                   
                   {/* Decorative line */}
-                  <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mx-auto mt-6 group-hover:w-16 transition-all duration-300"></div>
+                   <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mx-auto mt-6 group-hover:w-16 transition-all duration-300"></div>
                 </div>
               </motion.div>
             ))}
@@ -126,7 +126,7 @@ export default function About({ locale }: AboutProps) {
                  {/* European Expertise Block */}
          <AnimatedSection delay={0.4}>
            <motion.div 
-             className="relative bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 rounded-3xl overflow-hidden shadow-2xl mb-20 border border-slate-600/30"
+             className="relative bg-gradient-to-br from-indigo-950 via-indigo-900 to-violet-900 rounded-3xl overflow-hidden shadow-2xl mb-20 border border-violet-800/40"
              initial={{ opacity: 0, scale: 0.95 }}
              whileInView={{ opacity: 1, scale: 1 }}
              transition={{ duration: 0.8 }}
@@ -134,16 +134,15 @@ export default function About({ locale }: AboutProps) {
              whileHover={{ scale: 1.01 }}
            >
              <div className="grid md:grid-cols-2 items-stretch">
-                               <motion.div
-                  className="p-10 md:p-16"
-                  style={{ background: '#1e293b' }}
+               <motion.div
+                  className="p-10 md:p-16 bg-gradient-to-br from-indigo-900 to-violet-900"
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                   viewport={{ once: true }}
                 >
                  <motion.div
-                   className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-amber-900/50 to-yellow-900/50 rounded-full text-amber-300 text-sm font-medium mb-6 border border-amber-700/50"
+                   className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-violet-900/40 rounded-full text-violet-200 text-sm font-medium mb-6 border border-violet-800/50"
                    initial={{ opacity: 0, y: 20 }}
                    whileInView={{ opacity: 1, y: 0 }}
                    transition={{ duration: 0.6, delay: 0.3 }}
@@ -153,13 +152,13 @@ export default function About({ locale }: AboutProps) {
                    European Excellence®
                  </motion.div>
 
-                 <h3 className="text-3xl md:text-4xl font-bold text-slate-100 mb-6"
+                 <h3 className="text-3xl md:text-4xl font-bold text-indigo-100 mb-6"
                      dir={locale === 'ar' ? 'rtl' : 'ltr'}
                      style={{ lineHeight: locale === 'ar' ? '1.3' : '1.2' }}>
                    {getTranslation(locale, 'about.expertise.title')}
                  </h3>
                  
-                 <p className="text-lg text-slate-300 mb-8 leading-relaxed"
+                 <p className="text-lg text-indigo-100/90 mb-8 leading-relaxed"
                     dir={locale === 'ar' ? 'rtl' : 'ltr'}
                     style={{ 
                       lineHeight: locale === 'ar' ? '1.9' : '1.7',
@@ -169,7 +168,7 @@ export default function About({ locale }: AboutProps) {
                  </p>
                  
                  <motion.div 
-                   className="flex items-center text-sm text-slate-300 bg-slate-700/80 backdrop-blur-sm rounded-xl px-4 py-3 w-fit border border-slate-600/50 shadow-sm"
+                   className="flex items-center text-sm text-indigo-100/90 bg-indigo-800/60 backdrop-blur-sm rounded-xl px-4 py-3 w-fit border border-violet-700/40 shadow-sm"
                    initial={{ opacity: 0, x: -20 }}
                    whileInView={{ opacity: 1, x: 0 }}
                    transition={{ duration: 0.6, delay: 0.4 }}
@@ -181,13 +180,13 @@ export default function About({ locale }: AboutProps) {
                </motion.div>
                
                <motion.div 
-                 className="relative h-full min-h-[300px] md:min-h-[400px] overflow-hidden bg-gradient-to-br from-slate-700 to-slate-600"
+                 className="relative h-full min-h-[300px] md:min-h-[400px] overflow-hidden bg-gradient-to-br from-indigo-800 to-violet-700"
                  initial={{ opacity: 0, x: 30 }}
                  whileInView={{ opacity: 1, x: 0 }}
                  transition={{ duration: 0.8, delay: 0.3 }}
                  viewport={{ once: true }}
                >
-                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-600/10 z-10"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 to-violet-900/10 z-10"></div>
                  <Image
                    src="/images/right-guy.webp"
                    alt="Professional contractor"
@@ -202,8 +201,8 @@ export default function About({ locale }: AboutProps) {
                  {/* Quote Section - Refined Design */}
          <AnimatedSection delay={0.5}>
            <div className="text-center max-w-4xl mx-auto">
-             <motion.div
-               className="relative bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl p-6 md:p-8 shadow-lg border border-slate-600/50 hover:shadow-xl transition-all duration-500"
+              <motion.div
+                className="relative bg-gradient-to-br from-indigo-900 to-violet-900 rounded-2xl p-6 md:p-8 shadow-lg border border-violet-800/40 hover:shadow-xl transition-all duration-500"
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8 }}
@@ -211,11 +210,11 @@ export default function About({ locale }: AboutProps) {
                whileHover={{ scale: 1.01 }}
              >
                {/* Subtle background gradient */}
-               <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-indigo-900/10 rounded-2xl opacity-60"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 to-violet-900/10 rounded-2xl opacity-60"></div>
                
                <div className="relative z-10">
-                 <motion.div
-                   className="inline-flex items-center justify-center w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-4 shadow-sm"
+                  <motion.div
+                    className="inline-flex items-center justify-center w-8 h-8 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-full mb-4 shadow-sm"
                    initial={{ opacity: 0, scale: 0 }}
                    whileInView={{ opacity: 1, scale: 1 }}
                    transition={{ duration: 0.6, delay: 0.2 }}
@@ -241,8 +240,8 @@ export default function About({ locale }: AboutProps) {
                    {getTranslation(locale, 'about.quote.text')}
                  </motion.blockquote>
                  
-                 <motion.div
-                   className="w-12 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mx-auto mb-3"
+                  <motion.div
+                    className="w-12 h-0.5 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-full mx-auto mb-3"
                    initial={{ scaleX: 0 }}
                    whileInView={{ scaleX: 1 }}
                    transition={{ duration: 0.8, delay: 0.4 }}
@@ -265,10 +264,10 @@ export default function About({ locale }: AboutProps) {
            </div>
                   </AnimatedSection>
 
-         {/* Trust Indicators Section */}
-         <AnimatedSection delay={0.6}>
-           <motion.div 
-             className="relative bg-gradient-to-br from-slate-800 via-blue-900 to-indigo-900 rounded-3xl overflow-hidden shadow-2xl mb-20 border border-slate-700/50"
+                   {/* Trust Indicators Section */}
+           <AnimatedSection delay={0.6}>
+                         <motion.div 
+               className="relative bg-gradient-to-br from-indigo-950 via-violet-900 to-purple-900 rounded-3xl overflow-hidden shadow-2xl mb-20 border border-violet-800/50 mt-24"
              initial={{ opacity: 0, scale: 0.95 }}
              whileInView={{ opacity: 1, scale: 1 }}
              transition={{ duration: 0.8 }}
@@ -276,13 +275,13 @@ export default function About({ locale }: AboutProps) {
              whileHover={{ scale: 1.01 }}
            >
              {/* Background decorative elements */}
-             <div className="absolute inset-0 overflow-hidden">
-               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/10 to-indigo-600/10"></div>
-               <div className="absolute -top-20 -right-20 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl"></div>
-               <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-indigo-500/5 rounded-full blur-3xl"></div>
+              <div className="absolute inset-0 overflow-hidden">
+               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-700/10 to-violet-700/10"></div>
+               <div className="absolute -top-20 -right-20 w-40 h-40 bg-indigo-500/5 rounded-full blur-3xl"></div>
+               <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-violet-500/5 rounded-full blur-3xl"></div>
              </div>
 
-             <div className="relative z-10 p-12 md:p-16">
+                           <div className="relative z-10 p-12 md:p-16 mt-4">
                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                  {/* 10+ Years Warranty */}
                  <motion.div 

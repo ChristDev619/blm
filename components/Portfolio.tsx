@@ -32,12 +32,12 @@ export default function Portfolio({ locale }: PortfolioProps) {
   ];
 
   return (
-    <section id="portfolio" className="py-20 bg-white dark:bg-gray-900">
+    <section id="portfolio" className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="text-center mb-16">
             <motion.h2 
-              className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6"
+              className="text-3xl md:text-4xl font-bold text-white mb-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -46,7 +46,7 @@ export default function Portfolio({ locale }: PortfolioProps) {
               {getTranslation(locale, 'portfolio.title')}
             </motion.h2>
             <motion.p 
-              className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+              className="text-lg text-gray-300 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -88,7 +88,7 @@ export default function Portfolio({ locale }: PortfolioProps) {
               {portfolioImages.map((image, index) => (
                 <SwiperSlide key={index}>
                   <motion.div 
-                    className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+                    className="bg-gray-800/40 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-700/40"
                     whileHover={{ 
                       y: -10,
                       transition: { duration: 0.3 }
@@ -102,11 +102,11 @@ export default function Portfolio({ locale }: PortfolioProps) {
                         className="object-cover"
                       />
                     </div>
-                    <div className="p-4 bg-gray-50 dark:bg-gray-700">
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    <div className="p-4 bg-gray-800/40">
+                      <h3 className="text-lg font-semibold text-white mb-2">
                         {image.title}
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">
+                      <p className="text-gray-300 text-sm">
                         {image.description}
                       </p>
                     </div>

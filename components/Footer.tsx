@@ -10,7 +10,7 @@ interface FooterProps {
 
 export default function Footer({ locale }: FooterProps) {
   return (
-    <footer className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white overflow-hidden">
+    <footer className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating Geometric Shapes */}

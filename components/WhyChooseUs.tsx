@@ -12,18 +12,18 @@ export default function WhyChooseUs({ locale }: WhyChooseUsProps) {
   const features = getTranslationArray(locale, 'why.features');
 
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-100 to-indigo-200 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-full blur-3xl opacity-60"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-indigo-100 to-purple-200 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-full blur-3xl opacity-60"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-emerald-600/20 to-teal-600/20 rounded-full blur-3xl opacity-40"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-green-600/20 to-emerald-600/20 rounded-full blur-3xl opacity-40"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection>
           <div className="text-center mb-20">
             <motion.div
-              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-full text-blue-700 dark:text-blue-300 text-sm font-medium mb-6"
+              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-emerald-900/40 to-teal-900/40 rounded-full text-emerald-200 text-sm font-medium mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -34,7 +34,7 @@ export default function WhyChooseUs({ locale }: WhyChooseUsProps) {
             </motion.div>
             
             <motion.h2 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 dark:from-white dark:via-blue-100 dark:to-indigo-100 bg-clip-text text-transparent mb-8"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-100 via-teal-100 to-green-100 bg-clip-text text-transparent mb-8"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -44,7 +44,7 @@ export default function WhyChooseUs({ locale }: WhyChooseUsProps) {
             </motion.h2>
             
             <motion.p 
-              className="text-xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed"
+              className="text-xl text-emerald-100/90 max-w-4xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -60,7 +60,7 @@ export default function WhyChooseUs({ locale }: WhyChooseUsProps) {
             {features.map((feature: string, index: number) => (
               <motion.div 
                 key={index} 
-                className="group relative bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl p-8 border border-white/20 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:bg-white/90 dark:hover:bg-slate-800/90"
+                className="group relative bg-emerald-950/40 backdrop-blur-sm rounded-2xl p-8 border border-emerald-800/40 shadow-xl hover:shadow-2xl transition-all duration-500 hover:bg-emerald-950/60"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -71,11 +71,11 @@ export default function WhyChooseUs({ locale }: WhyChooseUsProps) {
                 }}
               >
                 {/* Hover effect background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-800/20 to-teal-800/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="relative z-10">
                   <motion.div 
-                    className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300"
+                    className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300"
                     whileHover={{ rotate: 5 }}
                   >
                     <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -83,12 +83,12 @@ export default function WhyChooseUs({ locale }: WhyChooseUsProps) {
                     </svg>
                   </motion.div>
                   
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-emerald-50 mb-4 group-hover:text-emerald-300 transition-colors duration-300">
                     {feature}
                   </h3>
                   
                   {/* Decorative line */}
-                  <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full group-hover:w-16 transition-all duration-300"></div>
+                  <div className="w-12 h-1 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full group-hover:w-16 transition-all duration-300"></div>
                 </div>
               </motion.div>
             ))}
@@ -98,7 +98,7 @@ export default function WhyChooseUs({ locale }: WhyChooseUsProps) {
         {/* Enhanced CTA Block */}
         <AnimatedSection delay={0.4}>
           <motion.div 
-            className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 rounded-3xl p-10 md:p-16 text-center text-white overflow-hidden"
+            className="relative bg-gradient-to-br from-emerald-700 via-teal-700 to-green-700 rounded-3xl p-10 md:p-16 text-center text-white overflow-hidden"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}

@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getTranslation } from '@/lib/translations';
 import AnimatedSection from './AnimatedSection';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface ContactProps {
   locale: string;
@@ -13,9 +13,10 @@ export default function Contact({ locale }: ContactProps) {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    projectType: '',
     message: ''
   });
+  const [isTyping, setIsTyping] = useState(false);
+  const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,14 +29,38 @@ export default function Contact({ locale }: ContactProps) {
       ...formData,
       [e.target.name]: e.target.value
     });
+    
+    // Set typing animation
+    setIsTyping(true);
+    
+    // Clear previous timeout
+    if (typingTimeout) {
+      clearTimeout(typingTimeout);
+    }
+    
+    // Set new timeout to stop animation after 2 seconds of no typing
+    const timeout = setTimeout(() => {
+      setIsTyping(false);
+    }, 2000);
+    
+    setTypingTimeout(timeout);
   };
 
+  // Cleanup timeout on component unmount
+  useEffect(() => {
+    return () => {
+      if (typingTimeout) {
+        clearTimeout(typingTimeout);
+      }
+    };
+  }, [typingTimeout]);
+
   return (
-    <section id="contact" className="py-24 bg-gradient-to-br from-slate-800 via-blue-900 to-indigo-900 relative overflow-hidden">
+    <section id="contact" className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-600/10 to-indigo-600/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-indigo-600/10 to-purple-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-sky-600/10 to-cyan-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-blue-600/10 to-cyan-600/10 rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -224,18 +249,109 @@ export default function Contact({ locale }: ContactProps) {
 
             {/* Contact Form - Right Column */}
             <motion.div 
-              className="bg-slate-700/50 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-slate-600/30 shadow-2xl"
+              className="relative bg-gradient-to-br from-white/10 via-white/15 to-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white/20 shadow-2xl overflow-hidden"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.01 }}
             >
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-8"
-                  dir={locale === 'ar' ? 'rtl' : 'ltr'}
-                  style={{ textAlign: 'left' }}>
-                {getTranslation(locale, 'contact.form.title')}
-              </h3>
+              {/* Painting Brush Animations */}
+              <AnimatePresence>
+                {isTyping && (
+                  <>
+                                         {/* Top-left brush */}
+                     <motion.div
+                       key="brush1"
+                       className="absolute -top-8 -left-8 text-5xl opacity-80"
+                       initial={{ opacity: 0, x: -30, y: -30, rotate: -45 }}
+                       animate={{ opacity: 0.8, x: 0, y: 0, rotate: 0 }}
+                       exit={{ opacity: 0, x: -30, y: -30, rotate: -45 }}
+                       transition={{ duration: 0.8, ease: "easeOut" }}
+                     >
+                       🖌️
+                     </motion.div>
+                     
+                     {/* Top-right brush */}
+                     <motion.div
+                       key="brush2"
+                       className="absolute -top-4 -right-4 text-5xl opacity-90"
+                       initial={{ opacity: 0, x: 40, y: -25, rotate: 45 }}
+                       animate={{ opacity: 0.9, x: 0, y: 0, rotate: 0 }}
+                       exit={{ opacity: 0, x: 40, y: -25, rotate: 45 }}
+                       transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                     >
+                       🎨
+                     </motion.div>
+                     
+                     {/* Bottom-left brush */}
+                     <motion.div
+                       key="brush3"
+                       className="absolute -bottom-6 -left-6 text-4xl opacity-70"
+                       initial={{ opacity: 0, x: -25, y: 25, rotate: -30 }}
+                       animate={{ opacity: 0.7, x: 0, y: 0, rotate: 0 }}
+                       exit={{ opacity: 0, x: -25, y: 25, rotate: -30 }}
+                       transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                     >
+                       🖼️
+                     </motion.div>
+                     
+                     {/* Bottom-right brush */}
+                     <motion.div
+                       key="brush4"
+                       className="absolute -bottom-8 -right-8 text-5xl opacity-80"
+                       initial={{ opacity: 0, x: 30, y: 30, rotate: 30 }}
+                       animate={{ opacity: 0.8, x: 0, y: 0, rotate: 0 }}
+                       exit={{ opacity: 0, x: 30, y: 30, rotate: 30 }}
+                       transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                     >
+                       🎭
+                     </motion.div>
+                    
+                                         {/* Floating paint drops */}
+                     <motion.div
+                       key="drop1"
+                       className="absolute top-1/4 left-1/4 w-3 h-3 bg-blue-400 rounded-full shadow-lg"
+                       initial={{ opacity: 0, scale: 0, y: -15 }}
+                       animate={{ opacity: 0.9, scale: 1, y: 0 }}
+                       exit={{ opacity: 0, scale: 0, y: -15 }}
+                       transition={{ duration: 0.6, delay: 0.3 }}
+                     />
+                     <motion.div
+                       key="drop2"
+                       className="absolute top-1/3 right-1/3 w-2.5 h-2.5 bg-purple-400 rounded-full shadow-lg"
+                       initial={{ opacity: 0, scale: 0, y: -12 }}
+                       animate={{ opacity: 0.8, scale: 1, y: 0 }}
+                       exit={{ opacity: 0, scale: 0, y: -12 }}
+                       transition={{ duration: 0.6, delay: 0.5 }}
+                     />
+                     <motion.div
+                       key="drop3"
+                       className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-cyan-400 rounded-full shadow-lg"
+                       initial={{ opacity: 0, scale: 0, y: -10 }}
+                       animate={{ opacity: 0.8, scale: 1, y: 0 }}
+                       exit={{ opacity: 0, scale: 0, y: -10 }}
+                       transition={{ duration: 0.6, delay: 0.7 }}
+                     />
+                  </>
+                )}
+              </AnimatePresence>
+              
+              {/* Form background pattern */}
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10"></div>
+                <div className="absolute top-0 left-0 w-full h-full" style={{
+                  backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px)`,
+                  backgroundSize: '40px 40px'
+                }}></div>
+              </div>
+              
+              <div className="relative z-10">
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-8"
+                    dir={locale === 'ar' ? 'rtl' : 'ltr'}
+                    style={{ textAlign: 'left' }}>
+                  {getTranslation(locale, 'contact.form.title')}
+                </h3>
               <form onSubmit={handleSubmit} className="space-y-6" suppressHydrationWarning>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -243,7 +359,7 @@ export default function Contact({ locale }: ContactProps) {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-3"
+                  <label htmlFor="name" className="block text-sm font-semibold text-white mb-3"
                          dir={locale === 'ar' ? 'rtl' : 'ltr'}>
                     {getTranslation(locale, 'contact.form.name')}
                   </label>
@@ -253,7 +369,7 @@ export default function Contact({ locale }: ContactProps) {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-4 bg-slate-800/50 border border-slate-600/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-slate-400 backdrop-blur-sm transition-all duration-300"
+                    className="w-full px-4 py-4 bg-white/20 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-white placeholder-white/60 backdrop-blur-sm transition-all duration-300 hover:bg-white/25"
                     required
                     suppressHydrationWarning
                   />
@@ -265,7 +381,7 @@ export default function Contact({ locale }: ContactProps) {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   viewport={{ once: true }}
                 >
-                  <label htmlFor="phone" className="block text-sm font-medium text-slate-300 mb-3"
+                  <label htmlFor="phone" className="block text-sm font-semibold text-white mb-3"
                          dir={locale === 'ar' ? 'rtl' : 'ltr'}>
                     {getTranslation(locale, 'contact.form.phone')}
                   </label>
@@ -275,48 +391,21 @@ export default function Contact({ locale }: ContactProps) {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-4 bg-slate-800/50 border border-slate-600/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-slate-400 backdrop-blur-sm transition-all duration-300"
+                    className="w-full px-4 py-4 bg-white/20 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-white placeholder-white/60 backdrop-blur-sm transition-all duration-300 hover:bg-white/25"
                     required
                     suppressHydrationWarning
                   />
                 </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="projectType" className="block text-sm font-medium text-slate-300 mb-3"
-                         dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-                    {getTranslation(locale, 'contact.form.projectType')}
-                  </label>
-                  <select
-                    id="projectType"
-                    name="projectType"
-                    value={formData.projectType}
-                    onChange={handleChange}
-                    className="w-full px-4 py-4 bg-slate-800/50 border border-slate-600/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white backdrop-blur-sm transition-all duration-300"
-                    required
-                    suppressHydrationWarning
-                  >
-                    <option value="">{getTranslation(locale, 'contact.form.projectTypePlaceholder')}</option>
-                    <option value="residential">{getTranslation(locale, 'contact.form.projectTypes.residential')}</option>
-                    <option value="commercial">{getTranslation(locale, 'contact.form.projectTypes.commercial')}</option>
-                    <option value="interior">{getTranslation(locale, 'contact.form.projectTypes.interior')}</option>
-                    <option value="exterior">{getTranslation(locale, 'contact.form.projectTypes.exterior')}</option>
-                    <option value="renovation">{getTranslation(locale, 'contact.form.projectTypes.renovation')}</option>
-                    <option value="other">{getTranslation(locale, 'contact.form.projectTypes.other')}</option>
-                  </select>
-                </motion.div>
+                
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-3"
+                                 <motion.div
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   transition={{ duration: 0.6, delay: 0.3 }}
+                   viewport={{ once: true }}
+                 >
+                  <label htmlFor="message" className="block text-sm font-semibold text-white mb-3"
                          dir={locale === 'ar' ? 'rtl' : 'ltr'}>
                     {getTranslation(locale, 'contact.form.message')}
                   </label>
@@ -326,7 +415,7 @@ export default function Contact({ locale }: ContactProps) {
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full px-4 py-4 bg-slate-800/50 border border-slate-600/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-slate-400 backdrop-blur-sm transition-all duration-300 resize-none"
+                    className="w-full px-4 py-4 bg-white/20 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-white placeholder-white/60 backdrop-blur-sm transition-all duration-300 resize-none hover:bg-white/25"
                     placeholder={getTranslation(locale, 'contact.form.messagePlaceholder')}
                     suppressHydrationWarning
                   />
@@ -334,7 +423,7 @@ export default function Contact({ locale }: ContactProps) {
 
                 <motion.button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-4 px-8 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                  className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold py-4 px-8 rounded-xl hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
@@ -342,10 +431,14 @@ export default function Contact({ locale }: ContactProps) {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  {getTranslation(locale, 'contact.form.send')}
+                  <span className="flex items-center justify-center">
+                    <span className="mr-2">📤</span>
+                    {getTranslation(locale, 'contact.form.send')}
+                  </span>
                 </motion.button>
               </form>
-            </motion.div>
+            </div>
+          </motion.div>
           </div>
         </AnimatedSection>
       </div>
