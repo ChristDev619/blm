@@ -184,16 +184,7 @@ export default function About({ locale }: AboutProps) {
                 
 
                 
-                {/* Auto-Play Indicator */}
-                <motion.div
-                  className="absolute top-6 left-6 px-4 py-2 bg-black/60 backdrop-blur-sm rounded-lg text-white text-sm font-medium border border-white/20"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                  viewport={{ once: true }}
-                >
-                  🎥 Auto-Playing
-                </motion.div>
+
 
                 {/* Decorative corner elements */}
                 <div className="absolute top-8 right-8 w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-xl"></div>
