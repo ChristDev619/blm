@@ -110,8 +110,6 @@ export default function Services({ locale }: ServicesProps) {
                     <span className="text-sm font-bold text-amber-100">Professional Spray Painting</span>
                   </motion.div>
                 </div>
-                
-
               </motion.div>
             </motion.div>
 

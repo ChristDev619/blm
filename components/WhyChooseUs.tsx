@@ -11,44 +11,93 @@ interface WhyChooseUsProps {
 export default function WhyChooseUs({ locale }: WhyChooseUsProps) {
   const features = getTranslationArray(locale, 'why.features');
 
+  // Professional icons for each feature
+  const featureIcons = [
+    { icon: '🇸🇪', gradient: 'from-blue-500 to-indigo-600', glow: 'blue' }, // European Experience
+    { icon: '⚡', gradient: 'from-amber-500 to-orange-600', glow: 'amber' }, // Advanced Technology
+    { icon: '⏰', gradient: 'from-purple-500 to-pink-600', glow: 'purple' }, // Time Commitment
+    { icon: '🛡️', gradient: 'from-emerald-500 to-teal-600', glow: 'emerald' }, // Written Warranties
+    { icon: '🌿', gradient: 'from-green-500 to-emerald-600', glow: 'green' }, // Eco-Friendly
+    { icon: '👥', gradient: 'from-cyan-500 to-blue-600', glow: 'cyan' } // Professional Team
+  ];
+
   return (
     <section className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-      {/* Background decorative elements */}
+      {/* Enhanced Background with floating elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-emerald-600/20 to-teal-600/20 rounded-full blur-3xl opacity-40"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-green-600/20 to-emerald-600/20 rounded-full blur-3xl opacity-40"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-600/15 to-purple-600/15 rounded-full blur-3xl opacity-60"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-indigo-600/15 to-cyan-600/15 rounded-full blur-3xl opacity-60"></div>
+        
+        {/* Floating paint drops */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 rounded-full opacity-20"
+            style={{
+              background: ['#3B82F6', '#8B5CF6', '#EC4899', '#10B981'][i % 4],
+              left: `${10 + i * 12}%`,
+              top: `${20 + (i % 3) * 25}%`
+            }}
+            animate={{
+              y: [0, -20, 0],
+              scale: [1, 1.2, 1],
+              opacity: [0.2, 0.4, 0.2]
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              delay: i * 0.5
+            }}
+          />
+        ))}
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection>
           <div className="text-center mb-20">
             <motion.div
-              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-emerald-900/40 to-teal-900/40 rounded-full text-emerald-200 text-sm font-medium mb-6"
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-900/50 to-purple-900/50 backdrop-blur-sm rounded-full text-indigo-200 text-sm font-medium mb-8 border border-indigo-700/30 shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
-              Premium Quality Service
+              <motion.span 
+                className="w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-3"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              ></motion.span>
+              ✨ Swedish-European Excellence
             </motion.div>
             
             <motion.h2 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-100 via-teal-100 to-green-100 bg-clip-text text-transparent mb-8"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
+              dir={locale === 'ar' ? 'rtl' : 'ltr'}
+              style={{ 
+                textAlign: 'center',
+                background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}
             >
               {getTranslation(locale, 'why.title')}
             </motion.h2>
             
             <motion.p 
-              className="text-xl text-emerald-100/90 max-w-4xl mx-auto leading-relaxed"
+              className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
+              dir={locale === 'ar' ? 'rtl' : 'ltr'}
+              style={{ 
+                lineHeight: locale === 'ar' ? '1.8' : '1.6',
+                textAlign: 'center'
+              }}
             >
               {getTranslation(locale, 'why.subtitle')}
             </motion.p>
@@ -57,90 +106,184 @@ export default function WhyChooseUs({ locale }: WhyChooseUsProps) {
 
         <AnimatedSection delay={0.3}>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            {features.map((feature: string, index: number) => (
-              <motion.div 
-                key={index} 
-                className="group relative bg-emerald-950/40 backdrop-blur-sm rounded-2xl p-8 border border-emerald-800/40 shadow-xl hover:shadow-2xl transition-all duration-500 hover:bg-emerald-950/60"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  y: -8,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                {/* Hover effect background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-800/20 to-teal-800/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <div className="relative z-10">
-                  <motion.div 
-                    className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300"
-                    whileHover={{ rotate: 5 }}
-                  >
-                    <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </motion.div>
+            {features.map((feature: string, index: number) => {
+              const iconData = featureIcons[index] || featureIcons[0];
+              return (
+                <motion.div 
+                  key={index} 
+                  className="group relative bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:bg-white/10 overflow-hidden"
+                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.8, delay: index * 0.15 }}
+                  viewport={{ once: true }}
+                  whileHover={{ 
+                    y: -12,
+                    scale: 1.02,
+                    transition: { duration: 0.4 }
+                  }}
+                >
+                  {/* Dynamic glow effect */}
+                  <div className={`absolute -inset-0.5 bg-gradient-to-r ${iconData.gradient} rounded-3xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-700`}></div>
                   
-                  <h3 className="text-xl font-bold text-emerald-50 mb-4 group-hover:text-emerald-300 transition-colors duration-300">
-                    {feature}
-                  </h3>
+                  {/* Floating particles */}
+                  <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                    {[...Array(3)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className={`absolute w-1 h-1 bg-${iconData.glow}-400 rounded-full opacity-0 group-hover:opacity-60`}
+                        style={{
+                          left: `${20 + i * 30}%`,
+                          top: `${20 + i * 20}%`
+                        }}
+                        animate={{
+                          y: [0, -10, 0],
+                          opacity: [0, 0.6, 0]
+                        }}
+                        transition={{
+                          duration: 2,
+                          delay: i * 0.3,
+                          repeat: Infinity
+                        }}
+                      />
+                    ))}
+                  </div>
                   
-                  {/* Decorative line */}
-                  <div className="w-12 h-1 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full group-hover:w-16 transition-all duration-300"></div>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="relative z-10">
+                    {/* Enhanced icon with 3D effect */}
+                    <motion.div 
+                      className={`flex items-center justify-center w-20 h-20 bg-gradient-to-br ${iconData.gradient} rounded-2xl mb-6 shadow-2xl group-hover:shadow-3xl transition-all duration-500 relative overflow-hidden`}
+                      whileHover={{ 
+                        rotate: [0, -5, 5, 0],
+                        scale: 1.1
+                      }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      {/* Inner glow */}
+                      <div className="absolute inset-1 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      <span className="text-3xl relative z-10 filter drop-shadow-lg">
+                        {iconData.icon}
+                      </span>
+                    </motion.div>
+                    
+                    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-blue-200 transition-colors duration-500 leading-tight"
+                        dir={locale === 'ar' ? 'rtl' : 'ltr'}
+                        style={{ 
+                          lineHeight: locale === 'ar' ? '1.6' : '1.4',
+                          textAlign: locale === 'ar' ? 'right' : 'left'
+                        }}>
+                      {feature}
+                    </h3>
+                    
+                    {/* Enhanced decorative line with animation */}
+                    <motion.div 
+                      className={`h-1 bg-gradient-to-r ${iconData.gradient} rounded-full transition-all duration-500`}
+                      initial={{ width: 48 }}
+                      whileInView={{ width: 64 }}
+                      transition={{ duration: 1, delay: index * 0.1 }}
+                      whileHover={{ width: 80 }}
+                    />
+                    
+
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </AnimatedSection>
 
-        {/* Enhanced CTA Block */}
-        <AnimatedSection delay={0.4}>
+        {/* Modern CTA Block */}
+        <AnimatedSection delay={0.6}>
           <motion.div 
-            className="relative bg-gradient-to-br from-emerald-700 via-teal-700 to-green-700 rounded-3xl p-10 md:p-16 text-center text-white overflow-hidden"
+            className="relative bg-gradient-to-br from-blue-900/80 via-indigo-900/80 to-purple-900/80 backdrop-blur-xl rounded-4xl p-12 md:p-16 text-center text-white overflow-hidden border border-white/10 shadow-2xl"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.01 }}
           >
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-50">
+            {/* Advanced background effects */}
+            <div className="absolute inset-0">
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
-              <div className="absolute top-0 left-0 w-full h-full" style={{
-                backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px)`,
-                backgroundSize: '60px 60px'
+              <div className="absolute top-0 left-0 w-full h-full opacity-30" style={{
+                backgroundImage: `radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.15) 1px, transparent 1px), 
+                                 radial-gradient(circle at 70% 70%, rgba(147, 51, 234, 0.15) 1px, transparent 1px)`,
+                backgroundSize: '50px 50px, 80px 80px'
               }}></div>
+              
+              {/* Floating gradient orbs */}
+              <motion.div
+                className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.6, 0.3]
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              <motion.div
+                className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"
+                animate={{
+                  scale: [1.2, 1, 1.2],
+                  opacity: [0.4, 0.2, 0.4]
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
             </div>
             
             <div className="relative z-10">
               <motion.div
-                className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium mb-6"
+                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-full text-blue-200 text-sm font-medium mb-8 border border-blue-400/30 shadow-lg"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                ✨ Let's Get Started
+                <motion.span 
+                  className="w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-3"
+                  animate={{ 
+                    scale: [1, 1.3, 1],
+                    rotate: [0, 180, 360]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                ></motion.span>
+                🚀 Let's Get Started
               </motion.div>
               
               <motion.h3 
-                className="text-3xl md:text-4xl font-bold mb-6"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
+                dir={locale === 'ar' ? 'rtl' : 'ltr'}
+                style={{ 
+                  background: 'linear-gradient(135deg, #ffffff 0%, #ddd6fe 50%, #c7d2fe 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
               >
                 {getTranslation(locale, 'why.cta.title')}
               </motion.h3>
               
               <motion.p 
-                className="text-xl mb-10 opacity-90 max-w-2xl mx-auto"
+                className="text-xl mb-12 opacity-90 max-w-2xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
+                dir={locale === 'ar' ? 'rtl' : 'ltr'}
+                style={{ 
+                  lineHeight: locale === 'ar' ? '1.8' : '1.6',
+                  textAlign: 'center'
+                }}
               >
                 {getTranslation(locale, 'why.cta.subtitle')}
               </motion.p>
@@ -154,30 +297,53 @@ export default function WhyChooseUs({ locale }: WhyChooseUsProps) {
               >
                 <motion.a
                   href="#contact"
-                  className="group inline-flex items-center px-8 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-                  whileHover={{ scale: 1.05 }}
+                  className="group relative inline-flex items-center px-10 py-5 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold rounded-2xl overflow-hidden shadow-2xl hover:shadow-blue-500/25 transition-all duration-300"
+                  whileHover={{ 
+                    scale: 1.05,
+                    boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.5)"
+                  }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="mr-3 text-xl">📞</span>
-                  {getTranslation(locale, 'why.cta.quote')}
-                  <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                  <span className="relative mr-3 text-2xl">📞</span>
+                  <span className="relative">{getTranslation(locale, 'why.cta.quote')}</span>
+                  <motion.svg 
+                    className="relative ml-3 w-5 h-5" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
+                  </motion.svg>
                 </motion.a>
                 
                 <motion.a
                   href="https://wa.me/00966598331519"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center px-8 py-4 border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 backdrop-blur-sm transition-all duration-300 transform hover:scale-105"
-                  whileHover={{ scale: 1.05 }}
+                  className="group relative inline-flex items-center px-10 py-5 border-2 border-white/30 text-white font-bold rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all duration-300 overflow-hidden"
+                  whileHover={{ 
+                    scale: 1.05,
+                    borderColor: "rgba(255, 255, 255, 0.5)"
+                  }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="mr-3 text-xl">💬</span>
-                  {getTranslation(locale, 'why.cta.whatsapp')}
-                  <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span className="relative mr-3 text-2xl">💬</span>
+                  <span className="relative">{getTranslation(locale, 'why.cta.whatsapp')}</span>
+                  <motion.svg 
+                    className="relative ml-3 w-5 h-5" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
+                  </motion.svg>
                 </motion.a>
               </motion.div>
             </div>
