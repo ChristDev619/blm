@@ -163,71 +163,7 @@ export default function Services({ locale }: ServicesProps) {
           </div>
         </AnimatedSection>
 
-        {/* Enhanced Stats Section */}
-        <AnimatedSection delay={0.4}>
-          <motion.div 
-            className="bg-amber-950/30 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-amber-800/30 shadow-2xl"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.02 }}
-          >
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <motion.div 
-                  className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent mb-3"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {getTranslation(locale, 'services.stats.warranty.value')}
-                </motion.div>
-                <div className="text-amber-100/80 font-medium">
-                  {getTranslation(locale, 'services.stats.warranty.label')}
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <motion.div 
-                  className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent mb-3"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {getTranslation(locale, 'services.stats.eco.value')}
-                </motion.div>
-                <div className="text-amber-100/80 font-medium">
-                  {getTranslation(locale, 'services.stats.eco.label')}
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                <motion.div 
-                  className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-fuchsia-400 to-pink-400 bg-clip-text text-transparent mb-3"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {getTranslation(locale, 'services.stats.support.value')}
-                </motion.div>
-                <div className="text-amber-100/80 font-medium">
-                  {getTranslation(locale, 'services.stats.support.label')}
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </AnimatedSection>
+
       </div>
     </section>
   );
