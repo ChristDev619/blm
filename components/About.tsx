@@ -178,7 +178,7 @@ export default function About({ locale }: AboutProps) {
                   preload="metadata"
                   poster="/images/hero-bg.jpg"
                 >
-                  <source src="/vid/Video.mp4" type="video/mp4" />
+                  <source src="/vid/2.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 

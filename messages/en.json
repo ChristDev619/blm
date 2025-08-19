@@ -15,13 +15,13 @@
     "badge": "Swedish-European Excellence",
     "title": "Best Look Contracting",
     "subtitle": "Swedish-European Excellence in Saudi Arabia",
-    "description": "Specialized in high-end paints and modern finishes with advanced technology and 19+ years of experience",
+    "description": "Specialized in high-end paints and modern finishes with advanced technology",
     "cta": {
       "book": "Book Free Site Visit",
       "contact": "Contact Us Directly"
     },
     "trust": {
-      "warranty": "19+ Years Experience",
+      "warranty": "Proven Expertise",
       "eco": "100% Eco-Friendly",
       "technology": "Advanced Technology"
     }
@@ -72,8 +72,8 @@
     ],
     "stats": {
       "warranty": {
-        "value": "19+",
-        "label": "Years Experience"
+        "value": "100%",
+        "label": "Quality Guaranteed"
       },
       "eco": {
         "value": "100%",
@@ -89,16 +89,16 @@
     "title": "Our Advanced Machines",
     "subtitle": "State-of-the-art equipment for professional painting and finishing",
     "machine1": {
-      "title": "Professional Spray Gun",
-      "description": "High-precision spraying system for perfect coverage and finish"
+      "title": "Sanding and Grinding Machine",
+      "description": "Advanced sanding and grinding machine for high-precision surface preparation"
     },
     "machine2": {
-      "title": "Dust-Free Sanding Equipment",
-      "description": "Advanced sanding technology for clean, dust-free preparation"
+      "title": "Paint Spraying Machine with Single Level and Flow",
+      "description": "Advanced spraying machine for painting and perfect coverage"
     },
     "machine3": {
-      "title": "Automated Painting System",
-      "description": "Computer-controlled painting system for consistent results"
+      "title": "Computerized Professional Putty Machine",
+      "description": "Computerized putty machine for consistent and precise results"
     },
     "features": {
       "technology": {
@@ -153,7 +153,7 @@
       "European Experience × Saudi Quality",
       "Advanced Technology – High-Level Equipment",
       "Full Commitment to Time and Details",
-      "19+ Years of Professional Experience",
+      "Proven Professional Excellence",
       "100% Environmentally Friendly System",
       "Professional Team with International Experience"
     ],
@@ -211,7 +211,7 @@
       "bestLook": "Best Look",
       "contracting": "Contracting"
     },
-    "description": "Swedish-European excellence in Saudi Arabia. Specialized in high-end paints and modern finishes with advanced technology and 19+ years of experience",
+    "description": "Swedish-European excellence in Saudi Arabia. Specialized in high-end paints and modern finishes with advanced technology",
     "services": {
       "title": "Our Services",
       "list": [
