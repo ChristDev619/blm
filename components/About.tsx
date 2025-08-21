@@ -222,6 +222,50 @@ export default function About({ locale }: AboutProps) {
     {/* Full Screen Video Showcase - Outside container */}
     <section className="relative">
       <AnimatedSection delay={0.4}>
+        {/* Video Section Title */}
+        <motion.div 
+          className="text-center mb-8 px-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <motion.div
+            className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full text-blue-200 text-sm font-medium mb-4 border border-blue-500/30 backdrop-blur-sm"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></span>
+            🎥 Watch Our Work
+          </motion.div>
+          
+          <motion.h3 
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            dir={locale === 'ar' ? 'rtl' : 'ltr'}
+            style={{ textAlign: 'center' }}
+          >
+            {locale === 'ar' ? 'شاهد أعمالنا الاحترافية' : 'Professional Work Showcase'}
+          </motion.h3>
+          
+          <motion.p 
+            className="text-slate-300 text-sm md:text-base max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            dir={locale === 'ar' ? 'rtl' : 'ltr'}
+            style={{ textAlign: 'center' }}
+          >
+            {locale === 'ar' ? 'شاهد كيف نقوم بأعمال الرش الاحترافية بأحدث التقنيات' : 'See how we perform professional spray painting with the latest technology'}
+          </motion.p>
+        </motion.div>
+
         <motion.div 
           className="relative w-screen overflow-hidden"
           style={{ marginLeft: 'calc(-50vw + 50%)' }}
@@ -239,7 +283,7 @@ export default function About({ locale }: AboutProps) {
            viewport={{ once: true }}
          >
                {/* Video Container with Auto-Play on Scroll */}
-               <div className="relative w-full h-full">
+               <div className="relative w-full h-full bg-slate-800">
                  <video
                    ref={videoRef}
                    className="w-full h-full object-contain"
@@ -249,10 +293,15 @@ export default function About({ locale }: AboutProps) {
                    preload="auto"
                    poster="/images/hero-bg.jpg"
                    controls={false}
+                   onError={(e) => console.error('Video error:', e)}
+                   onLoadStart={() => console.log('Video loading started')}
+                   onLoadedData={() => console.log('Video data loaded')}
                  >
                    <source src="/vid/3.mp4" type="video/mp4" />
                    Your browser does not support the video tag.
                  </video>
+                 
+                 
                  
                  {/* Unmute Button */}
                  {showUnmuteButton && (
@@ -314,7 +363,7 @@ export default function About({ locale }: AboutProps) {
                   >
                     {[
                       { src: '/picxx/123.png', alt: 'Professional work sample 1' },
-                      { src: '/picxx/1234.png', alt: 'Professional work sample 2' }
+                      { src: '/picxx/realisticbarrel.png', alt: 'Professional work sample 2' }
                     ].map((image, index) => (
                       <motion.div
                         key={index}

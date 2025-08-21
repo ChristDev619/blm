@@ -1,30 +1,45 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getTranslation } from '@/lib/translations';
+import { isAdminAuthenticated, login } from '@/lib/auth';
 
 export default function AdminLogin() {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [locale, setLocale] = useState('en');
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    setMounted(true);
+    // Check if already authenticated
+    if (isAdminAuthenticated()) {
+      router.push('/admin/messages');
+    }
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    // Check credentials
-    if (credentials.username === 'adminBLM' && credentials.password === 'p@ssw0rdBL!M') {
-      // Store authentication in sessionStorage
-      sessionStorage.setItem('adminAuthenticated', 'true');
-      router.push('/admin/messages');
-    } else {
-      setError(locale === 'ar' ? 'اسم المستخدم أو كلمة المرور غير صحيحة' : 'Invalid username or password');
+    try {
+      // Check credentials
+      if (credentials.username === 'adminBLM' && credentials.password === 'p@ssw0rdBL!M') {
+        // Store authentication
+        login();
+        router.push('/admin/messages');
+      } else {
+        setError(locale === 'ar' ? 'اسم المستخدم أو كلمة المرور غير صحيحة' : 'Invalid username or password');
+      }
+    } catch (err) {
+      setError(locale === 'ar' ? 'حدث خطأ في تسجيل الدخول' : 'Login error occurred');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +48,18 @@ export default function AdminLogin() {
       [e.target.name]: e.target.value
     });
   };
+
+  // Don't render until mounted to avoid hydration issues
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-6">⏳</div>
+          <div className="text-white text-xl">Loading...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">

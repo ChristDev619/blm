@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getTranslation } from '@/lib/translations';
+import { isAdminAuthenticated, logout } from '@/lib/auth';
 
 interface Message {
   id: string;
@@ -20,6 +21,7 @@ export default function AdminMessages() {
   const [error, setError] = useState('');
   const [locale, setLocale] = useState('ar');
   const [authenticated, setAuthenticated] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
   const loadMessages = async () => {
@@ -40,14 +42,15 @@ export default function AdminMessages() {
   };
 
   useEffect(() => {
+    setMounted(true);
+    
     // Check authentication
-    const isAuthenticated = sessionStorage.getItem('adminAuthenticated') === 'true';
-    if (!isAuthenticated) {
+    if (isAdminAuthenticated()) {
+      setAuthenticated(true);
+      loadMessages();
+    } else {
       router.push('/admin/login');
-      return;
     }
-    setAuthenticated(true);
-    loadMessages();
   }, [router]);
 
   const clearAllMessages = async () => {
@@ -85,9 +88,21 @@ export default function AdminMessages() {
   };
 
   const handleLogout = () => {
-    sessionStorage.removeItem('adminAuthenticated');
+    logout();
     router.push('/admin/login');
   };
+
+  // Don't render until mounted to avoid hydration issues
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-6">⏳</div>
+          <div className="text-white text-xl">Loading...</div>
+        </div>
+      </div>
+    );
+  }
 
   if (!authenticated) {
     return (
