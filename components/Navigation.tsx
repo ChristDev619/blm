@@ -17,7 +17,6 @@ const Navigation = ({ locale }: NavigationProps) => {
   const navItems = [
     { href: `/${locale}`, label: getTranslation(locale, 'nav.home'), id: 'home' },
     { href: `/${locale}#about`, label: getTranslation(locale, 'nav.about'), id: 'about' },
-    { href: `/${locale}#services`, label: getTranslation(locale, 'nav.services'), id: 'services' },
     { href: `/${locale}#machines`, label: getTranslation(locale, 'nav.machines'), id: 'machines' },
     { href: `/${locale}#portfolio`, label: getTranslation(locale, 'nav.portfolio'), id: 'portfolio' },
     { href: `/${locale}#contact`, label: getTranslation(locale, 'nav.contact'), id: 'contact' },
@@ -30,7 +29,7 @@ const Navigation = ({ locale }: NavigationProps) => {
   // Scroll detection for active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'services', 'machines', 'portfolio', 'contact'];
+      const sections = ['home', 'about', 'machines', 'portfolio', 'contact'];
       const scrollPosition = window.scrollY + 150; // Increased offset for better detection
 
       let currentSection = 'home';

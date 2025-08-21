@@ -17,11 +17,66 @@ export default function Contact({ locale }: ContactProps) {
   });
   const [isTyping, setIsTyping] = useState(false);
   const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState<'success' | 'error'>('success');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const showNotification = (message: string, type: 'success' | 'error' = 'success') => {
+    setToastMessage(message);
+    setToastType(type);
+    setShowToast(true);
+    
+    // Auto hide after 4 seconds
+    setTimeout(() => {
+      setShowToast(false);
+    }, 4000);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    
+    try {
+      // Save message to server (text file)
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          message: formData.message
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save message');
+      }
+
+      // Show success notification
+      showNotification(
+        locale === 'ar' 
+          ? 'تم حفظ رسالتك بنجاح!' 
+          : 'Message saved successfully!',
+        'success'
+      );
+      
+      // Clear form after submission
+      setFormData({
+        name: '',
+        phone: '',
+        message: ''
+      });
+
+    } catch (error) {
+      console.error('Error saving message:', error);
+      showNotification(
+        locale === 'ar' 
+          ? 'حدث خطأ في حفظ الرسالة. يرجى المحاولة مرة أخرى.' 
+          : 'Error saving message. Please try again.',
+        'error'
+      );
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -442,6 +497,91 @@ export default function Contact({ locale }: ContactProps) {
           </div>
         </AnimatedSection>
       </div>
+
+      {/* Modern Toast Notification */}
+      <AnimatePresence>
+        {showToast && (
+          <motion.div
+            className="fixed top-6 right-6 z-50 max-w-sm"
+            initial={{ opacity: 0, x: 300, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: 300, scale: 0.8 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 300, 
+              damping: 30 
+            }}
+          >
+            <div className={`
+              relative bg-gradient-to-br from-slate-900/95 via-slate-800/90 to-slate-900/95 backdrop-blur-xl 
+              rounded-2xl p-6 shadow-2xl border border-slate-700/40
+              ${toastType === 'success' 
+                ? 'shadow-blue-500/30 border-blue-400/40' 
+                : 'shadow-red-500/30 border-red-400/40'
+              }
+            `}>
+              {/* Success Icon */}
+              {toastType === 'success' && (
+                <motion.div
+                  className="absolute -top-3 -left-3 w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg border-2 border-blue-400/50"
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
+                >
+                  <span className="text-white text-xl font-bold">✓</span>
+                </motion.div>
+              )}
+
+              {/* Error Icon */}
+              {toastType === 'error' && (
+                <motion.div
+                  className="absolute -top-3 -left-3 w-12 h-12 bg-gradient-to-r from-red-500 to-pink-600 rounded-full flex items-center justify-center shadow-lg border-2 border-red-400/50"
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
+                >
+                  <span className="text-white text-xl font-bold">✕</span>
+                </motion.div>
+              )}
+
+              {/* Content */}
+              <div className="ml-8">
+                <h4 className={`
+                  text-lg font-bold mb-2
+                  ${toastType === 'success' ? 'text-blue-200' : 'text-red-200'}
+                `}>
+                  {toastType === 'success' 
+                    ? (locale === 'ar' ? 'تم بنجاح!' : 'Success!')
+                    : (locale === 'ar' ? 'خطأ!' : 'Error!')
+                  }
+                </h4>
+                <p className="text-slate-300 leading-relaxed" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+                  {toastMessage}
+                </p>
+              </div>
+
+              {/* Progress Bar */}
+              <motion.div
+                className={`
+                  absolute bottom-0 left-0 h-1 rounded-b-2xl
+                  ${toastType === 'success' ? 'bg-gradient-to-r from-blue-500 to-indigo-600' : 'bg-gradient-to-r from-red-500 to-pink-600'}
+                `}
+                initial={{ width: "100%" }}
+                animate={{ width: "0%" }}
+                transition={{ duration: 4, ease: "linear" }}
+              />
+
+              {/* Close Button */}
+              <button
+                onClick={() => setShowToast(false)}
+                className="absolute top-3 right-3 text-slate-400 hover:text-slate-200 transition-colors duration-200 hover:bg-slate-700/50 rounded-full w-6 h-6 flex items-center justify-center"
+              >
+                <span className="text-lg font-bold">×</span>
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 } 

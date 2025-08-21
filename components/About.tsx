@@ -11,6 +11,58 @@ interface AboutProps {
 }
 
 export default function About({ locale }: AboutProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(false);
+  const [showUnmuteButton, setShowUnmuteButton] = useState(false);
+  const [autoplayAttempted, setAutoplayAttempted] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !autoplayAttempted) {
+            // Auto-play when scrolled into view
+            video.currentTime = 0;
+            setAutoplayAttempted(true);
+            
+            // Try to play with sound first
+            video.play().catch(() => {
+              // If autoplay with sound fails, try muted
+              video.muted = true;
+              setIsMuted(true);
+              setShowUnmuteButton(true);
+              video.play().catch((error) => {
+                console.log('Video autoplay failed:', error);
+              });
+            });
+          } else if (!entry.isIntersecting) {
+            // Pause when out of view
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.3 } // Play when 30% visible
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []); // Empty dependency array - only run once
+
+  const handleUnmute = () => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = false;
+      setIsMuted(false);
+      setShowUnmuteButton(false);
+    }
+  };
+
   return (
     <>
     <section id="about" className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
@@ -68,6 +120,47 @@ export default function About({ locale }: AboutProps) {
         </AnimatedSection>
 
         <AnimatedSection delay={0.3}>
+          {/* Professional Image Section */}
+          <div className="text-center mb-16">
+            <motion.div
+              className="relative max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <motion.div 
+                className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 shadow-2xl overflow-hidden"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Image Container */}
+                <div className="relative h-96 md:h-[500px] rounded-2xl overflow-hidden">
+                                     <Image
+                     src="/images/34.png"
+                     alt="Professional painter using spray gun"
+                     fill
+                     className="object-contain"
+                     priority
+                   />
+                  {/* Overlay with gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent"></div>
+                  
+                  {/* Floating badge */}
+                  <motion.div
+                    className="absolute top-6 right-6 bg-blue-900/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg"
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    <span className="text-sm font-bold text-blue-100">Professional Spray Painting</span>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+
           <div className="grid md:grid-cols-3 gap-8 mb-20">
             {[
               { icon: "🎨", title: getTranslation(locale, 'about.features.spraying.title'), description: getTranslation(locale, 'about.features.spraying.description'), color: "from-blue-500 to-indigo-600" },
@@ -137,60 +230,49 @@ export default function About({ locale }: AboutProps) {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-        {/* True Full Screen Video Section */}
-        <motion.div 
-          className="relative h-[60vh] md:h-[70vh] lg:h-[80vh] w-screen overflow-hidden"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-              {/* Video Container with Auto-Play on Scroll */}
-              <div className="relative w-full h-full">
-                <video
-                  ref={(el) => {
-                    if (el) {
-                      const observer = new IntersectionObserver(
-                        (entries) => {
-                          entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                              // Auto-play when scrolled into view
-                              el.currentTime = 0;
-                              el.play().catch(console.log);
-                            } else {
-                              // Pause when out of view
-                              el.pause();
-                            }
-                          });
-                        },
-                        { threshold: 0.5 } // Play when 50% visible
-                      );
-                      
-                      observer.observe(el);
-                      
-                      return () => observer.disconnect();
-                    }
-                  }}
-                  className="w-full h-full object-contain"
-                  muted={false}
-                  playsInline
-                  loop
-                  preload="metadata"
-                  poster="/images/hero-bg.jpg"
-                >
-                  <source src="/vid/2.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                
+                 {/* True Full Screen Video Section */}
+         <motion.div 
+           className="relative h-[60vh] md:h-[70vh] lg:h-[80vh] w-screen overflow-hidden"
+           initial={{ opacity: 0 }}
+           whileInView={{ opacity: 1 }}
+           transition={{ duration: 0.8, delay: 0.2 }}
+           viewport={{ once: true }}
+         >
+               {/* Video Container with Auto-Play on Scroll */}
+               <div className="relative w-full h-full">
+                 <video
+                   ref={videoRef}
+                   className="w-full h-full object-contain"
+                   muted={isMuted}
+                   playsInline
+                   loop
+                   preload="auto"
+                   poster="/images/hero-bg.jpg"
+                   controls={false}
+                 >
+                   <source src="/vid/3.mp4" type="video/mp4" />
+                   Your browser does not support the video tag.
+                 </video>
+                 
+                 {/* Unmute Button */}
+                 {showUnmuteButton && (
+                   <motion.button
+                     onClick={handleUnmute}
+                     className="absolute top-4 right-4 z-20 bg-black/50 hover:bg-black/70 text-white px-4 py-2 rounded-lg backdrop-blur-sm transition-all duration-300 flex items-center space-x-2"
+                     initial={{ opacity: 0, scale: 0.8 }}
+                     animate={{ opacity: 1, scale: 1 }}
+                     whileHover={{ scale: 1.05 }}
+                   >
+                     <span className="text-lg">🔇</span>
+                     <span className="text-sm font-medium">Click to unmute</span>
+                   </motion.button>
+                 )}
 
-                
-
-
-                {/* Decorative corner elements */}
-                <div className="absolute top-8 right-8 w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-xl"></div>
-                <div className="absolute bottom-8 left-8 w-12 h-12 bg-gradient-to-tr from-purple-500/20 to-pink-500/20 rounded-full blur-lg"></div>
-              </div>
-            </motion.div>
+                 {/* Decorative corner elements */}
+                 <div className="absolute top-8 right-8 w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-xl"></div>
+                 <div className="absolute bottom-8 left-8 w-12 h-12 bg-gradient-to-tr from-purple-500/20 to-pink-500/20 rounded-full blur-lg"></div>
+               </div>
+             </motion.div>
           </motion.div>
         </AnimatedSection>
     </section>

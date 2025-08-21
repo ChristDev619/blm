@@ -176,7 +176,7 @@ export default function Footer({ locale }: FooterProps) {
               </motion.div>
             </motion.div>
 
-            {/* Services - Enhanced Design */}
+            {/* Machines - Enhanced Design */}
             <motion.div
               className="md:col-span-1"
               initial={{ opacity: 0, y: 30 }}
@@ -191,15 +191,15 @@ export default function Footer({ locale }: FooterProps) {
               >
                 <motion.div className="flex items-center mb-6">
                   <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
-                    <span className="text-lg">⚡</span>
+                    <span className="text-lg">🔧</span>
                   </div>
                   <h3 className="text-xl font-bold text-white">
-                    {getTranslation(locale, 'footer.services.title')}
+                    {getTranslation(locale, 'footer.machines.title')}
                   </h3>
                 </motion.div>
                 
                 <ul className="space-y-3">
-                  {getTranslationArray(locale, 'footer.services.list').map((service: string, index: number) => (
+                  {getTranslationArray(locale, 'footer.machines.list').map((machine: string, index: number) => (
                     <motion.li 
                       key={index}
                       className="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group"
@@ -214,7 +214,7 @@ export default function Footer({ locale }: FooterProps) {
                         className="w-2 h-2 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full mr-3 group-hover:scale-150 transition-transform duration-300"
                         style={{ marginRight: locale === 'ar' ? '0' : '0.75rem', marginLeft: locale === 'ar' ? '0.75rem' : '0' }}
                       />
-                      <span style={{ textAlign: locale === 'ar' ? 'right' : 'left' }}>{service}</span>
+                      <span style={{ textAlign: locale === 'ar' ? 'right' : 'left' }}>{machine}</span>
                     </motion.li>
                   ))}
                 </ul>
@@ -344,7 +344,7 @@ export default function Footer({ locale }: FooterProps) {
                 >
                   {[
                     { href: "#about", text: getTranslation(locale, 'footer.links.about') },
-                    { href: "#services", text: getTranslation(locale, 'footer.links.services') },
+                    { href: "#machines", text: getTranslation(locale, 'footer.links.machines') },
                     { href: "#portfolio", text: getTranslation(locale, 'footer.links.portfolio') },
                     { href: "#contact", text: getTranslation(locale, 'footer.links.contact') }
                   ].map((link, index) => (

@@ -61,14 +61,10 @@
   },
   "services": {
     "title": "Our Services",
-    "subtitle": "We execute and finish luxurious internal and external work including:",
+    "subtitle": "We work within an integrated European system, advanced and modern, suitable for global environmental standards.",
     "list": [
-      "Automatic Putty Spraying",
-      "Final Paint Spraying",
-      "Dust-Free Sanding",
-      "Fiber Mesh Installation",
-      "Crack & Peeling Protection",
-      "Written Warranty on All Work"
+      "Interior Finishes",
+      "Exterior Finishes"
     ],
     "stats": {
       "warranty": {
@@ -206,21 +202,58 @@
       "send": "Send Message"
     }
   },
+  "admin": {
+    "title": "Contact Messages Admin",
+    "subtitle": "All contact form submissions from your website with detailed analytics",
+    "stats": {
+      "total": "Total Messages",
+      "totalDesc": "All time submissions",
+      "today": "Today",
+      "todayDesc": "Messages received today",
+      "week": "This Week",
+      "weekDesc": "Last 7 days activity"
+    },
+    "showing": "Showing {count} message",
+    "noMessages": "No messages yet",
+    "refresh": "Refresh",
+    "clearAll": "Clear All",
+    "noMessagesTitle": "No Messages Yet",
+    "noMessagesDesc": "Contact form messages will appear here once users start submitting them.",
+    "storageInfo": "Messages are stored securely in a text file database",
+    "submitted": "Submitted",
+    "message": "Message",
+    "ipAddress": "IP Address",
+    "browserInfo": "Browser Info",
+    "logout": "Logout",
+    "login": {
+      "title": "Admin Login",
+      "subtitle": "Access your contact messages dashboard",
+      "username": "Username",
+      "usernamePlaceholder": "Enter your username",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "signIn": "Sign In",
+      "signingIn": "Signing In...",
+      "businessTitle": "Best Look Contracting",
+      "businessDesc": "Swedish-European excellence in Saudi Arabia. Specialized in high-end paints and modern finishes with advanced technology.",
+      "footer": "Secure admin access for authorized personnel only"
+    }
+  },
   "footer": {
     "logo": {
       "bestLook": "Best Look",
       "contracting": "Contracting"
     },
     "description": "Swedish-European excellence in Saudi Arabia. Specialized in high-end paints and modern finishes with advanced technology",
-    "services": {
-      "title": "Our Services",
+    "machines": {
+      "title": "Our Machines",
       "list": [
-        "Automatic Putty Spraying",
-        "Final Paint Spraying",
-        "Dust-Free Sanding",
-        "Fiber Mesh Installation",
-        "Crack Protection",
-        "Written Warranties"
+        "Sanding and Grinding Machine",
+        "Paint Spraying Machine",
+        "Computerized Putty Machine",
+        "Advanced Technology Equipment",
+        "Professional Tools",
+        "Quality Assurance Systems"
       ]
     },
     "contact": {
@@ -232,10 +265,10 @@
       "phone": "+966 59 833 1519",
       "email": "info@blm.sa"
     },
-    "copyright": "© 2025 Best Look Contracting. All rights reserved",
+    "copyright": "© Best Look Contracting. All rights reserved",
     "links": {
       "about": "About",
-      "services": "Services",
+      "machines": "Machines",
       "portfolio": "Portfolio",
       "contact": "Contact"
     }
