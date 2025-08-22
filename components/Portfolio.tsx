@@ -16,23 +16,20 @@ export default function Portfolio({ locale }: PortfolioProps) {
   const portfolioImages = [
     {
       src: '/images/portfolio/1.jpg',
-      title: getTranslation(locale, 'portfolio.projects.project1.title'),
-      description: getTranslation(locale, 'portfolio.projects.project1.description')
+      title: getTranslation(locale, 'portfolio.projects.project1.title')
     },
     {
       src: '/images/portfolio/2.jpg',
-      title: getTranslation(locale, 'portfolio.projects.project2.title'),
-      description: getTranslation(locale, 'portfolio.projects.project2.description')
+      title: getTranslation(locale, 'portfolio.projects.project2.title')
     },
     {
       src: '/images/portfolio/3.jpg',
-      title: getTranslation(locale, 'portfolio.projects.project3.title'),
-      description: getTranslation(locale, 'portfolio.projects.project3.description')
+      title: getTranslation(locale, 'portfolio.projects.project3.title')
     }
   ];
 
-  // Business-relevant icons only - painting & contracting
-  const businessIcons = ['🏠', '🏢', '🔧']; // Buildings and construction
+  // Specific icons for each project type
+  const projectIcons = ['🏰', '🏢', '🏘️']; // Villa, Office Complex, Residential Complex
   const paintingTools = ['🖌️', '🎨']; // Only spray gun and paint
 
   return (
@@ -86,7 +83,7 @@ export default function Portfolio({ locale }: PortfolioProps) {
             ease: "easeInOut"
           }}
         >
-          🏠
+          🏰
         </motion.div>
         
         <motion.div
@@ -116,7 +113,7 @@ export default function Portfolio({ locale }: PortfolioProps) {
             ease: "easeInOut"
           }}
         >
-          🔧
+          🏘️
         </motion.div>
       </div>
 
@@ -220,13 +217,10 @@ export default function Portfolio({ locale }: PortfolioProps) {
                         <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-200 transition-colors duration-300">
                           {image.title}
                         </h3>
-                        <p className="text-gray-300 text-sm group-hover:text-gray-200 transition-colors duration-300">
-                          {image.description}
-                        </p>
                         
-                        {/* Simple business icon indicator */}
+                        {/* Project-specific icon indicator */}
                         <div className="absolute bottom-2 right-2 text-sm opacity-50">
-                          {businessIcons[index % businessIcons.length]}
+                          {projectIcons[index % projectIcons.length]}
                         </div>
                       </div>
                     </motion.div>

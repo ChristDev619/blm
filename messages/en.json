@@ -116,16 +116,13 @@
     "subtitle": "Discover our latest projects showcasing Swedish-European excellence in Saudi Arabia",
     "projects": {
       "project1": {
-        "title": "Luxury Villa",
-        "description": "Complete interior painting with premium finishes"
+        "title": "Luxury Villa"
       },
       "project2": {
-        "title": "Modern Office Complex",
-        "description": "Commercial painting with advanced technology"
+        "title": "Modern Office Complex"
       },
       "project3": {
-        "title": "Residential Complex",
-        "description": "Exterior painting with weather protection"
+        "title": "Residential Complex"
       },
       "project4": {
         "title": "Hotel Lobby",
