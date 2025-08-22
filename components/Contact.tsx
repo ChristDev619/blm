@@ -228,7 +228,7 @@ export default function Contact({ locale }: ContactProps) {
                       {getTranslation(locale, 'contact.info.whatsapp.title')}
                     </h4>
                     <a
-                      href="https://wa.me/00966598331519"
+                      href="https://wa.me/966598331519"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-400 hover:text-blue-300 transition-colors duration-200 text-lg"

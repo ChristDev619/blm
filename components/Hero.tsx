@@ -159,7 +159,7 @@ export default function Hero({ locale }: HeroProps) {
             </motion.a>
 
             <motion.a
-              href="https://wa.me/00966598331519"
+              href="https://wa.me/966598331519"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative inline-flex items-center px-10 py-5 border-2 border-blue-400/50 text-blue-200 font-bold rounded-2xl backdrop-blur-sm hover:bg-blue-400/10 transition-all duration-300 transform hover:scale-105"
@@ -212,7 +212,7 @@ export default function Hero({ locale }: HeroProps) {
         transition={{ duration: 0.5, delay: 3.5 }}
       >
         <motion.a
-          href="https://wa.me/00966598331519"
+          href="https://wa.me/966598331519"
           target="_blank"
           rel="noopener noreferrer"
           className="block w-16 h-16 bg-green-500 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:bg-green-400 transition-colors duration-300"

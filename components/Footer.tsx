@@ -144,7 +144,7 @@ export default function Footer({ locale }: FooterProps) {
                   viewport={{ once: true }}
                 >
                   <motion.a
-                    href="https://wa.me/00966598331519"
+                    href="https://wa.me/966598331519"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-green-500/25 transition-all duration-300"
@@ -164,7 +164,7 @@ export default function Footer({ locale }: FooterProps) {
                     <span className="text-xl">📧</span>
                   </motion.a>
                   <motion.a
-                    href="tel:00966598331519"
+                    href="tel:+966598331519"
                     className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.95 }}
@@ -275,7 +275,7 @@ export default function Footer({ locale }: FooterProps) {
                       <span className="text-green-400 text-sm">📱</span>
                     </div>
                     <a
-                      href="https://wa.me/00966598331519"
+                      href="https://wa.me/966598331519"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-400 hover:text-blue-300 transition-colors duration-300 font-medium"
