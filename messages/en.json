@@ -86,7 +86,7 @@
     "subtitle": "State-of-the-art equipment for professional painting and finishing",
     "machine1": {
       "title": "Sanding and Grinding Machine",
-      "description": "Advanced sanding and grinding machine for high-precision surface preparation"
+      "description": "Advanced sanding and grinding machine"
     },
     "machine2": {
       "title": "Paint Spraying Machine with Single Level and Flow",
@@ -116,7 +116,7 @@
     "subtitle": "Discover our latest projects showcasing Swedish-European excellence in Saudi Arabia",
     "projects": {
       "project1": {
-        "title": "Luxury Villa Interior",
+        "title": "Luxury Villa",
         "description": "Complete interior painting with premium finishes"
       },
       "project2": {
