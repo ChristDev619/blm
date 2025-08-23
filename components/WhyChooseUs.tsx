@@ -13,7 +13,7 @@ export default function WhyChooseUs({ locale }: WhyChooseUsProps) {
 
   // Professional icons for each feature
   const featureIcons = [
-    { icon: '🇸🇪', gradient: 'from-blue-500 to-indigo-600', glow: 'blue' }, // European Experience
+    { icon: '🌍', gradient: 'from-blue-500 to-indigo-600', glow: 'blue' }, // European Experience
     { icon: '⚡', gradient: 'from-amber-500 to-orange-600', glow: 'amber' }, // Advanced Technology
     { icon: '⏰', gradient: 'from-purple-500 to-pink-600', glow: 'purple' }, // Time Commitment
     { icon: '🛡️', gradient: 'from-emerald-500 to-teal-600', glow: 'emerald' }, // Written Warranties
