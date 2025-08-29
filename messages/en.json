@@ -85,8 +85,8 @@
     "title": "Our Advanced Machines",
     "subtitle": "State-of-the-art equipment for professional painting and finishing",
     "machine1": {
-      "title": "Sanding and Grinding Machine",
-      "description": "Advanced sanding and grinding machine"
+      "title": "Sanding Machine",
+      "description": "Advanced sanding machine"
     },
     "machine2": {
       "title": "Paint Spraying Machine with Single Level and Flow",
@@ -245,7 +245,7 @@
     "machines": {
       "title": "Our Machines",
       "list": [
-        "Sanding and Grinding Machine",
+        "Sanding Machine",
         "Paint Spraying Machine",
         "Computerized Putty Machine",
         "Advanced Technology Equipment",
