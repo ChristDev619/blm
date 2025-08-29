@@ -50,14 +50,16 @@ export default function Contact({ locale }: ContactProps) {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to save message');
+        throw new Error('Failed to send message');
       }
+
+      const result = await response.json();
 
       // Show success notification
       showNotification(
         locale === 'ar' 
-          ? 'تم حفظ رسالتك بنجاح!' 
-          : 'Message saved successfully!',
+          ? 'تم إرسال رسالتك بنجاح!' 
+          : 'Message sent successfully!',
         'success'
       );
       
@@ -69,11 +71,11 @@ export default function Contact({ locale }: ContactProps) {
       });
 
     } catch (error) {
-      console.error('Error saving message:', error);
+      console.error('Error sending message:', error);
       showNotification(
         locale === 'ar' 
-          ? 'حدث خطأ في حفظ الرسالة. يرجى المحاولة مرة أخرى.' 
-          : 'Error saving message. Please try again.',
+          ? 'حدث خطأ في إرسال الرسالة. يرجى المحاولة مرة أخرى.' 
+          : 'Error sending message. Please try again.',
         'error'
       );
     }
