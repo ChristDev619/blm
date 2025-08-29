@@ -39,34 +39,40 @@ export async function POST(request: NextRequest) {
       userAgent: request.headers.get('user-agent') || 'unknown'
     };
 
-    // Ensure data directory exists
-    const dataDir = path.dirname(DATA_FILE_PATH);
-    if (!existsSync(dataDir)) {
-      await mkdir(dataDir, { recursive: true });
-    }
-
-    // Read existing messages
-    let messages: ContactMessage[] = [];
-    if (existsSync(DATA_FILE_PATH)) {
-      try {
-        const fileContent = await readFile(DATA_FILE_PATH, 'utf-8');
-        if (fileContent.trim()) {
-          messages = JSON.parse(fileContent);
-        }
-      } catch (error) {
-        console.error('Error reading messages file:', error);
+    // Try to save to file (optional - don't fail if this doesn't work on Vercel)
+    try {
+      // Ensure data directory exists
+      const dataDir = path.dirname(DATA_FILE_PATH);
+      if (!existsSync(dataDir)) {
+        await mkdir(dataDir, { recursive: true });
       }
+
+      // Read existing messages
+      let messages: ContactMessage[] = [];
+      if (existsSync(DATA_FILE_PATH)) {
+        try {
+          const fileContent = await readFile(DATA_FILE_PATH, 'utf-8');
+          if (fileContent.trim()) {
+            messages = JSON.parse(fileContent);
+          }
+        } catch (error) {
+          console.error('Error reading messages file:', error);
+        }
+      }
+
+      // Add new message
+      messages.push(newMessage);
+
+      // Write back to file
+      await writeFile(DATA_FILE_PATH, JSON.stringify(messages, null, 2), 'utf-8');
+    } catch (fileError) {
+      console.error('Error saving message to file (non-critical):', fileError);
+      // Don't fail the entire request if file saving fails on Vercel
     }
-
-    // Add new message
-    messages.push(newMessage);
-
-    // Write back to file
-    await writeFile(DATA_FILE_PATH, JSON.stringify(messages, null, 2), 'utf-8');
 
     return NextResponse.json({ 
       success: true, 
-      message: 'Message saved successfully',
+      message: 'Message sent successfully',
       id: newMessage.id 
     });
 
