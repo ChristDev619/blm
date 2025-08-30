@@ -1,6 +1,6 @@
 # Email Setup for Contact Form
 
-The contact form has been configured to send emails directly to `christian_chindy@hotmail.com`. To enable this functionality, you need to set up email credentials.
+The contact form has been configured to send emails directly to `info@blm.sa`. To enable this functionality, you need to set up email credentials.
 
 ## Local Development Testing
 
