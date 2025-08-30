@@ -63,6 +63,7 @@ export default function Hero({ locale }: HeroProps) {
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
               dir={locale === 'ar' ? 'rtl' : 'ltr'}
+              itemProp="name"
             >
               {getTranslation(locale, 'hero.title').split(' ').map((word, index) => (
                 <motion.span

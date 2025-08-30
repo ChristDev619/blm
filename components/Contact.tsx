@@ -20,6 +20,7 @@ export default function Contact({ locale }: ContactProps) {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [toastType, setToastType] = useState<'success' | 'error'>('success');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const showNotification = (message: string, type: 'success' | 'error' = 'success') => {
     setToastMessage(message);
@@ -34,6 +35,9 @@ export default function Contact({ locale }: ContactProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Set loading state
+    setIsSubmitting(true);
     
     try {
       // Save message to server (text file)
@@ -78,6 +82,9 @@ export default function Contact({ locale }: ContactProps) {
           : 'Error sending message. Please try again.',
         'error'
       );
+    } finally {
+      // Reset loading state
+      setIsSubmitting(false);
     }
   };
 
@@ -480,17 +487,35 @@ export default function Contact({ locale }: ContactProps) {
 
                 <motion.button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold py-4 px-8 rounded-xl hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25"
+                  disabled={isSubmitting}
+                  className={`w-full font-bold py-4 px-8 rounded-xl transition-all duration-300 transform shadow-lg ${
+                    isSubmitting 
+                      ? 'bg-gray-500 cursor-not-allowed' 
+                      : 'bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 hover:scale-105 hover:shadow-blue-500/25'
+                  }`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                  whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >
-                  <span className="flex items-center justify-center">
-                    <span className="mr-2">📤</span>
-                    {getTranslation(locale, 'contact.form.send')}
+                  <span className="flex items-center justify-center text-white">
+                    {isSubmitting ? (
+                      <>
+                        <motion.div
+                          className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        />
+                        {locale === 'ar' ? 'جاري الإرسال...' : 'Sending...'}
+                      </>
+                    ) : (
+                      <>
+                        <span className="mr-2">📤</span>
+                        {getTranslation(locale, 'contact.form.send')}
+                      </>
+                    )}
                   </span>
                 </motion.button>
               </form>

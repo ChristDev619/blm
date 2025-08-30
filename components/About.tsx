@@ -65,7 +65,7 @@ export default function About({ locale }: AboutProps) {
 
   return (
     <>
-    <section id="about" className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <section id="about" className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden" itemScope itemType="https://schema.org/Organization">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-indigo-600/15 to-violet-600/15 rounded-full blur-3xl opacity-40"></div>

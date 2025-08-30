@@ -5,6 +5,7 @@ import Services from '@/components/Services';
 import Machines from '@/components/Machines';
 import Portfolio from '@/components/Portfolio';
 import WhyChooseUs from '@/components/WhyChooseUs';
+import FAQ from '@/components/FAQ';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -24,6 +25,7 @@ export default async function Home({
       <Machines locale={locale} />
       <Portfolio locale={locale} />
       <WhyChooseUs locale={locale} />
+      <FAQ locale={locale} />
       <Contact locale={locale} />
       <Footer locale={locale} />
     </div>
