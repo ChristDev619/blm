@@ -88,7 +88,7 @@ export default async function LocaleLayout({
       : "Specialized contracting company in high-end paints and modern finishes in Saudi Arabia",
     "url": "https://blm.sa",
     "telephone": "+966598339151",
-    "email": "info@blm.sa",
+    "email": "Info@bestlook.sa",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": locale === 'ar' ? "شارع الأمير محمد بن سلمان" : "Prince Mohammed bin Salman Street",

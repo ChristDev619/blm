@@ -155,7 +155,7 @@ export default function Footer({ locale }: FooterProps) {
                     <span className="text-xl">💬</span>
                   </motion.a>
                   <motion.a
-                    href="mailto:info@blm.sa"
+                    href="mailto:Info@bestlook.sa"
                     className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
                     whileHover={{ scale: 1.1, rotate: -5 }}
                     whileTap={{ scale: 0.95 }}
@@ -296,7 +296,7 @@ export default function Footer({ locale }: FooterProps) {
                       <span className="text-purple-400 text-sm">✉️</span>
                     </div>
                     <a
-                      href="mailto:info@blm.sa"
+                      href="mailto:Info@bestlook.sa"
                       className="text-blue-400 hover:text-blue-300 transition-colors duration-300 font-medium"
                       dir={locale === 'ar' ? 'rtl' : 'ltr'}
                     >

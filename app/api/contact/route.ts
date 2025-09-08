@@ -18,7 +18,7 @@ const DATA_FILE_PATH = path.join(process.cwd(), 'data', 'messages.txt');
 
 // Email configuration
 const EMAIL_CONFIG = {
-  to: 'info@blm.sa',
+  to: 'Info@bestlook.sa',
   subject: 'New Contact Form Submission - Best Look Contracting',
   from: process.env.EMAIL_USER || 'noreply@bestlook.com'
 };
