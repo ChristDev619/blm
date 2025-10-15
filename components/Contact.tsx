@@ -269,7 +269,7 @@ export default function Contact({ locale }: ContactProps) {
                       {getTranslation(locale, 'contact.info.email.title')}
                     </h4>
                     <a
-                      href="mailto:Info@bestlook.sa"
+                      href="mailto:Info@blm.sa"
                       className="text-blue-400 hover:text-blue-300 transition-colors duration-200 text-lg"
                     >
                       {getTranslation(locale, 'contact.info.email.value')}
